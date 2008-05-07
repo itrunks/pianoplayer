@@ -1,6 +1,6 @@
 ﻿namespace PianoPlayer
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( Form1 ) );
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( Main ) );
             this.octave = new System.Windows.Forms.NumericUpDown();
             this.octaveLabel = new System.Windows.Forms.Label();
             this.pianoKeyboard = new PianoPlayer.PianoKeyboard();
@@ -77,7 +77,7 @@
             this.pianoKeyboard.Size = new System.Drawing.Size( 590, 163 );
             this.pianoKeyboard.TabIndex = 5;
             // 
-            // Form1
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -86,7 +86,7 @@
             this.Controls.Add( this.octaveLabel );
             this.Controls.Add( this.octave );
             this.Icon = ( ( System.Drawing.Icon )( resources.GetObject( "$this.Icon" ) ) );
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Piano Player";
             ( ( System.ComponentModel.ISupportInitialize )( this.octave ) ).EndInit();
             this.ResumeLayout( false );
