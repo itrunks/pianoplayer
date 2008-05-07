@@ -14,12 +14,17 @@ namespace PianoPlayer
     {
         private Dictionary<Keys, int> keyboard = new Dictionary<Keys, int>();
         private Dictionary<Keys, bool> keyDown = new Dictionary<Keys, bool>();
-        private MIDI midi = new MIDI();
+        private MIDI midi;
+        private int octave = 5;
 
         public PianoKeyboard()
         {
             InitializeComponent();
+            
             this.Font = new Font( this.Font.Name, 6, FontStyle.Regular );
+            octave = 5;
+            midi = new MIDI();
+
             InitializeKeyboard();
         }
 
@@ -107,7 +112,7 @@ namespace PianoPlayer
 
         private void DrawKeyboard( Graphics g )
         {
-            float keyWidth = ( this.Width / 21 );
+            float keyWidth = ( this.Width / 22 );
             int keyHeight = this.Height - 1;
             int x;
             float width;
@@ -115,6 +120,7 @@ namespace PianoPlayer
             int note = 0;
 
             g.Clear( Color.White );
+
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
             for( float i = 0; i < this.Width; i += keyWidth )
@@ -139,7 +145,7 @@ namespace PianoPlayer
 
         private void PlayNote( Keys key, bool isDown )
         {
-            int note = GetNote( key ) + 12 * this.Octave;
+            int note = GetNote( key ) + 12 * octave;
             
             keyDown[ key ] = isDown;
 
@@ -157,7 +163,7 @@ namespace PianoPlayer
 
         private void DrawKey( int key, bool isDown )
         {
-            float keyWidth = ( this.Width / 21 );
+            float keyWidth = ( this.Width / 22 );
 
             int x = Convert.ToInt32( Convert.ToSingle( key ) * keyWidth );
             int y = ( this.Height / 10 ) * 8;
@@ -201,7 +207,8 @@ namespace PianoPlayer
 
         #region Properties
 
-        public int Octave { get; set; }
+        [DefaultValue( 5 )]
+        public int Octave { get { return octave; } set{ octave=value; } }
 
         #endregion
 

@@ -13,6 +13,7 @@ namespace PianoPlayer
         public Main()
         {
             InitializeComponent();
+            octave.Value = 4;
         }
 
         #region Events
