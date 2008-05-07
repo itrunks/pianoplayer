@@ -14,7 +14,14 @@ namespace PianoPlayer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault( false );
-            Application.Run( new Main() );
+            try
+            {
+                Application.Run(new Main());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
         }
     }
 }

@@ -7,12 +7,14 @@ namespace PianoPlayer
 {
     public class MIDI : IDisposable
     {
-        private OutputDevice outputDevice = new OutputDevice( 0 );
-        private ChannelMessageBuilder channelMessageBuilder = new ChannelMessageBuilder();
+        private OutputDevice outputDevice = null;
+        private ChannelMessageBuilder channelMessageBuilder;
         private bool disposed = false;
 
         public MIDI()
         {
+            outputDevice = new OutputDevice(0);
+            channelMessageBuilder = new ChannelMessageBuilder();
         }
 
         ~MIDI()
