@@ -34,7 +34,7 @@
   <ItemGroup>
     <Reference Include="Sanford.Multimedia, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\CSharpMidiToolkitV5_demo\Sanford.Multimedia.dll</HintPath>
+      <HintPath>.\Sanford.Multimedia.dll</HintPath>
     </Reference>
     <Reference Include="Sanford.Multimedia.Midi, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
