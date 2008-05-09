@@ -20,7 +20,7 @@ namespace PianoPlayer
         public PianoKeyboard()
         {
             InitializeComponent();
-            
+
             this.Font = new Font( this.Font.Name, 6, FontStyle.Regular );
             octave = 5;
             midi = new MIDI();
@@ -110,6 +110,24 @@ namespace PianoPlayer
             }
         }
 
+        private void PlayNote( Keys key, bool isDown )
+        {
+            int note = GetNote( key ) + 12 * octave;
+
+            keyDown[ key ] = isDown;
+
+            if( isDown )
+            {
+                midi.SendCommand( ChannelCommand.NoteOn, note, 127 );
+            }
+            else
+            {
+                midi.SendCommand( ChannelCommand.NoteOff, note, 0 );
+            }
+
+            DrawKey( keyboard[ key ], isDown );
+        }
+
         private void DrawKeyboard( Graphics g )
         {
             float keyWidth = ( this.Width / 22 );
@@ -143,23 +161,6 @@ namespace PianoPlayer
             }
         }
 
-        private void PlayNote( Keys key, bool isDown )
-        {
-            int note = GetNote( key ) + 12 * octave;
-            
-            keyDown[ key ] = isDown;
-
-            if( isDown )
-            {
-                midi.SendCommand( ChannelCommand.NoteOn, note, 127 );
-            }
-            else
-            {
-                midi.SendCommand( ChannelCommand.NoteOff, note, 0 );
-            }
-
-            DrawKey( keyboard[ key ], isDown );
-        }
 
         private void DrawKey( int key, bool isDown )
         {
@@ -208,7 +209,18 @@ namespace PianoPlayer
         #region Properties
 
         [DefaultValue( 5 )]
-        public int Octave { get { return octave; } set{ octave=value; } }
+        public int Octave
+        {
+            get
+            {
+                return octave;
+            }
+            
+            set
+            {
+                octave = value; 
+            }
+        }
 
         #endregion
 
@@ -237,6 +249,7 @@ namespace PianoPlayer
             Stop();
             base.OnControlRemoved( e );
         }
+
         #endregion
     }
 }
